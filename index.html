@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Search</title>
+    <script src="https://kit.fontawesome.com/75efdfb7ac.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <!-- Contains the search bar , and all the filters till the number 7 of our project -->
+    <div class = "container">
+        <div class = "search-bar">
+            <form class = "search-form" >
+                <input class="input-field"  type="text" > 
+                <i class="fa fa-search icon fa-lg"></i>  
+                <button class = "submit" type="button"><strong>Search</strong></button>        
+            </form>      
+        </div>
+                
+        <div class = "check-in">
+            <span id="check-in-tag">Check-in</span>
+            <span id="ci-day"></span>
+            <input type="date" id="check-in" name="check-in">
+            <button  type="submit" id="ci-left-arrow"><i  class="fas fa-chevron-left "></i></button>
+            <button type="submit" id="ci-right-arrow"><i  class="fas fa-chevron-right "></i></button>
+            
+        </div>
+
+        <div class = "check-out">
+            <span id="check-out-tag">Check-out</span>
+            <span id="co-day"></span>
+            <input type="date" id="check-out" name="check-out">
+            <button  type="submit" id="co-left-arrow"><i class="fas fa-chevron-left "></i></button>
+            <button type="submit" id="co-right-arrow"><i  class="fas fa-chevron-right "></i></button>
+            
+        </div>
+        
+        <div class = "family-rooms">
+            <select name="family-rooms" class ="fa" id="family-rooms" >
+                <option selected disabled value="rooms">Rooms</option>
+                <option value="single" id="single-room" class="fas fa-user">&#xf007;&nbsp;&nbsp;&nbsp;Single</option>
+                <option value="double" id="double-room" class="fas fa-user-friends">&#xf500;&nbsp;&nbsp;&nbsp;Double</option>
+                <option value="family-room" id="fam-room" class="fas fa-users">&#xf0c0;&nbsp;&nbsp;&nbsp;Family rooms</option>
+                
+            </select>       
+        </div>   
+        
+        <div class="slider">
+            <label id = "slider" for="slider">Price</label>
+            <p id = "max-value">max : $3000</p>
+            <input type="range" min="1" max="6090" value="3000" class="slide-bar">
+        </div>
+
+        <div class = "prop-rating"> 
+            <div class = "property">
+                <p id = "prop-label" for="property">Property type</p>  
+                <select name="property" id="property">
+                    <option selected disabled value="all">All</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class = "rating">
+                <p id = "rating-label">Guest rating</p>
+                <select name="rating" id="rating-tag">
+                <option selected disabled value="all">All</option>
+                <option value="okay">0 - 2 Okay</option>
+                <option value="fair">2 - 6 Fair</option>
+                <option value="good">6 - 7 Good</option>
+                <option value="very_good">8.5 Very Good</option>
+                <option value="Excellent">8.5 - 10 Excellent</option>
+                </select>
+            </div>
+        </div>
+
+        <div class = "location-filters">
+            <div class = "location">
+                <p id = "hotel-location">Hotel location</p>
+                <select name="location" id="location">
+                <option selected disabled value="all">All</option>
+                </select>
+            </div>
+            <div class = "extra-filters">
+                <p id = "extra-filters">More filters</p>
+                <select name="location" id="more-filters">
+                    <option selected disabled value="all">Extra fil...</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- Contains the map and the sorting filter of our project -->
+    <div class = "container2">
+        <div class = "location-map">
+                <div class="gmap-canvas">
+                    <iframe id="gmap-canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><a href="https://www.embedgooglemap.net"></a>
+                </div>       
+                <div class = "sort-by">  
+                    <p id="sort-label">Sort by</p>
+                    <select name="sort-by" id="sort-by">
+                    <option selected disabled value="all">Our recommendations</option>
+                    </select>      
+                </div>
+                <div class="indication"><i class="fas fa-exclamation-circle fa-lg"></i></div>
+        </div>
+    </div>
+    <!-- Contains the output.It's empty and we dynamically add html with js according to the result picked with filters-->
+    <!-- Bellow i wrote the html code to understand how it would look like if it was static -->
+<ol class = "container3">
+<!--
+<li class = "content">
+      
+            <div class = "img">
+                    <img id = "img" src="img/hotel1.jpg" alt="hotel1">
+            </div>
+            <div class = "hotel-info">
+                <h2 id = "hotel-title">Hotel Lancaster</h2>
+                <span class="fa fa-star checked" style="inline-size: auto;"></span>
+                <span class="fa fa-star checked" style="inline-size: auto;"></span>
+                <span class="fa fa-star checked" style="inline-size: auto;"></span>
+                <span class="fa fa-star checked" style="inline-size: auto;"></span>
+                <span class="fa fa-star checked" style="inline-size: auto;"></span>  <br>
+                <h3 id ="loc-dets">Paris , 0.3 miles to Chaps Elysees</h3>       
+            </div>
+            <div class = "hotel-web">
+                <p>Hotel website</p>
+                <p>$706</p>
+                <p>Agoda</p>
+                <p>$575</p>
+                <p>Travelocity</p>
+                <p>$708</p>
+            </div>
+            <div class = "view-deal">
+                <p>Hotel Website</p>
+                <p>$706</p>
+                <p>3 nights for $2,119</p>
+                <p>View Deal</p>
+ 
+</li>
+-->
+</ol>
+    
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="myscript.js"></script>
+    
+</body>
+</html>
+
